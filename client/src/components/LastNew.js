@@ -42,50 +42,55 @@ export default function LastNew(props) {
   }, []);
 
   const postlariCagir = posts.map((post) => post.description); // kaybetme
-  const stringValue ="The president canceled Republican National Convention events inFlorida and wore a face mask in public. But its too late."
+  const stringValue =
+    "The president canceled Republican National Convention events inFlorida and wore a face mask in public. But its too late.";
+
+  const postValues = posts.map((post) => (
+    <>
+      <Typography gutterBottom variant="h5" component="h2">
+        {" "}
+        TRUMP’S COVID CATCHUP: TOO LITTLE, 4 MILLION CASES TOO LATE{" "}
+        {posts.length > 0 ? posts[0].title : null}
+      </Typography>
+      <Typography variant="body2" color="textSecondary" component="p">
+        {stringValue.split("\n", 1)[0]}
+        {posts.length > 0 ? ReactHtmlParser(posts[0].description) : null}
+      </Typography>
+    </>
+  ));
+
   
+
+  const lastPost = posts[posts.length - 1];
 
   return (
     <div className={classes.root}>
-      {posts.map(post=>(   
-      <Link href={`/news/${post._id}`}>
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image="https://img.huffingtonpost.com/asset/5f1cf9c2220000bd0f38797f.jpeg?cache=YeNgrD9xgo&ops=800_450&format=webp"
-              title="Contemplative Reptile"
-            />
+      {posts.length > 0 ? (
+        <Link href={`/news/${lastPost._id}`}>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                image="https://img.huffingtonpost.com/asset/5f1cf9c2220000bd0f38797f.jpeg?cache=YeNgrD9xgo&ops=800_450&format=webp"
+                title="Contemplative Reptile"
+              />
 
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {" "}
-                TRUMP’S COVID CATCHUP: TOO LITTLE, 4 MILLION CASES TOO LATE{" "}
-                {posts.length > 0 ? posts[0].title : null}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-              {stringValue.split('\n',1)[0]}
-                {posts.length > 0
-                  ? ReactHtmlParser(posts[0].description)
-                  : null}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Link>
-      ))}
-      postlar
-      <button onClick={() => console.log(postlariCagir)}>cagir</button>
-      {ReactHtmlParser(postlariCagir[5])}
-      <button
-        onClick={() =>
-          (document.getElementById("asd").innerHTML = posts[0].title)
-        }
-      >
-        {" "}
-        göste r
-      </button>
-      <div id="asd">{/* {posts[0].title} */}</div>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {lastPost.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                ></Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Link>
+      ) : null}
+ 
+    
     </div>
   );
 }

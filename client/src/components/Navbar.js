@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <div className={classes.root}>
       <AppBar style={{ backgroundColor: "black" }} position="sticky">
-        <Box display="flex" justifyContent="flex-start" >
+        <Box display="flex" justifyContent="flex-start">
           <Box p={1}>
             <Box p={1}>
               <Menu />
@@ -53,7 +53,7 @@ const Navbar = () => {
               <Search />
             </Box>
           </Box>
-          <Box display="flex" justifyContent="end" marginLeft='auto'>
+          <Box display="flex" justifyContent="end" marginLeft="auto">
             <Box p={1}>
               <IconButton
                 aria-label="display more actions"
@@ -69,10 +69,12 @@ const Navbar = () => {
           </Box>
         </Box>
         <Box justifyContent="center" display="flex">
-          <img
-            src="https://www.underconsideration.com/brandnew/archives/huffpost_logo.png"
-            style={{ height: "50px" }}
-          />
+          <a href="/">
+            <img
+              src="https://www.underconsideration.com/brandnew/archives/huffpost_logo.png"
+              style={{ height: "50px" }}
+            />
+          </a>
         </Box>
 
         <Typography className={classes.title} variant="h8" noWrap>

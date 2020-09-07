@@ -7,6 +7,7 @@ router.post("/new", (req, res) => {
   let newPost = new New({
     title: req.body.title,
     description: req.body.description,
+    category:req.body.category,
     createdAt: Date.now(),
   });
 

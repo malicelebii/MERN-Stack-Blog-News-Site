@@ -16,13 +16,7 @@ function LandingPage() {
       </Grid>
       <Grid item md={9}>
         <h3 style={{ textAlign: "center" }}>//LATEST NEWS//</h3>
-        <Grid container md={12}>
-          <Grid item md={4}>
-            <LatestNews />
-          </Grid>
-          <Grid item md={4}>
-            <LatestNews />
-          </Grid>
+        <Grid container   direction="row" md={12}>
           <Grid item md={4}>
             <LatestNews />
           </Grid>

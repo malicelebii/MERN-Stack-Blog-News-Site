@@ -61,7 +61,7 @@ const postRoutes = require("./routes/post");
 const postPage = require("./routes/postPage")
 app.use("/api/users", authRoutes);
 app.use("/api/posts", postRoutes);
-app.use("/api/news/:id",postPage)
+app.use("/api/news",postPage)
 
 app.listen(5000, () => {
   console.log("listening on 5000");

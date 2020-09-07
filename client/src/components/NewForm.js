@@ -6,13 +6,21 @@ import { makeStyles } from "@material-ui/core/styles";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import axios from "axios";
-import ReactHtmlParser from 'react-html-parser'
+import ReactHtmlParser from "react-html-parser";
+import { Select } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: "25ch",
+    },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
     },
   },
 }));
@@ -23,6 +31,7 @@ export default function NewForm() {
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
   const [number, setnumber] = useState(0);
+  const [category, setcategory] = useState("");
 
   const onTitleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +43,11 @@ export default function NewForm() {
     setdescription(e.target.value);
   };
 
+  const onCategoryChange = (e) => {
+   
+    setcategory(e.target.value);
+  };
+
   const onEditorChange = (event, editor) => {
     const data = editor.getData();
     setdescription(data);
@@ -43,12 +57,13 @@ export default function NewForm() {
     e.preventDefault();
     const post = {
       title: title,
-      description: ReactHtmlParser(description),
+      description:description,
+      category:category
     };
 
     axios
       .post("http://localhost:5000/api/posts/new", post)
-      .then((res) => console.log(res.data))
+      .then((post) => console.log(post.data))
       .catch((err) => console.log(err));
   };
 
@@ -69,6 +84,19 @@ export default function NewForm() {
           value={title}
           onChange={(e) => onTitleChange(e)}
         />
+        <FormControl className={classes.formControl}>
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={category}
+            onChange={(e) => onCategoryChange(e)}
+          >
+            <MenuItem value="Politics">Politics</MenuItem>
+            <MenuItem value="Corona">Corona</MenuItem>
+            <MenuItem value="Economy">Economy</MenuItem>
+          </Select>
+        </FormControl>
         {/* <TextareaAutosize
           name="description"
           rowsMax={4}
@@ -82,10 +110,12 @@ export default function NewForm() {
           data={description}
           onChange={onEditorChange}
         />
-        desc:  <button onClick={()=>setnumber(!number)} > {number ? 'hide data' :'show data'}    </button>
-
-        {number ? ReactHtmlParser(description) : ''}
-
+        desc:{" "}
+        <button onClick={() => setnumber(!number)}>
+          {" "}
+          {number ? "hide data" : "show data"}{" "}
+        </button>
+        {number ? ReactHtmlParser(description) : ""}
         <Button type="submit">Send </Button>
       </div>
     </form>

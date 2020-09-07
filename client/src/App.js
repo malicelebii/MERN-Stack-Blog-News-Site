@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp";
 import NewForm from "./components/NewForm";
 import PostPage from "./components/PostPage";
 import News from "./components/News";
+import Corona from './components/Corona'
 
 
 function App() {
@@ -15,10 +16,11 @@ function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Navbar />
-      <div style={{ paddingTop: "20px", minHeight: "calc(100vh - 80px)" }}>
+      <div style={{  minHeight: "calc(100vh - 80px)" }}>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/news" component={News} />
+          <Route exact path="/coronavirus" component={Corona} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/new" component={NewForm} />
