@@ -5,6 +5,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import CssBaseline from '@material-ui/core/CssBaseline';
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
@@ -55,38 +57,46 @@ export default function News() {
 
   const postlar = posts.map((post) =>
     posts.length > 0 ? (
-      <Card className={classes.root}>
-
-          <CardMedia
-            className={classes.cover}
-            image="https://img.huffingtonpost.com/asset/5f2f6ceb1f000092643395ec.jpeg?cache=fnFxFe10do&ops=336_189%2Cquality_75&format=webp"
-            title="Live from space album cover"
+      <React.Fragment>
+        <Container maxWidth="sm">
+          <CssBaseline />
+          <Typography
+            component="div"
+          
           />
-   
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Link href="/#" className={classes.link}>
-              <Typography component="h5" variant="h5">
-                Live From Space
-                {post.title}
-              </Typography>
-            </Link>
-            <Typography variant="subtitle1" color="textSecondary">
-              Mac Miller
-              {post.description}
-            </Typography>
-          </CardContent>
-        </div>
-      </Card>
+          <Card className={classes.root}>
+            <CardMedia
+              className={classes.cover}
+              image={post.kapakImageUrl}
+              title={post.title}
+            />
+
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <Link href="/#" className={classes.link}>
+                  <Typography component="h5" variant="h5">
+                    {post.category}
+                  </Typography>
+                </Link>
+                <Typography variant="subtitle1" color="textSecondary">
+                  {post.title}
+                </Typography>
+              </CardContent>
+            </div>
+          </Card>
+        </Container>
+      </React.Fragment>
     ) : null
   );
 
   return (
     <div>
-      <Typography component="h3" variant="h3">
-        Latest News --------------------------
-      </Typography>
-      {postlar}
+  
+        <Typography component="h3" variant="h3">
+          Latest News --------------------------
+        </Typography>
+        {postlar}
+ 
     </div>
   );
 }

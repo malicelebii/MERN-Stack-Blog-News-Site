@@ -9,6 +9,7 @@ import NewForm from "./components/NewForm";
 import PostPage from "./components/PostPage";
 import News from "./components/News";
 import Corona from './components/Corona'
+import GridLayout from './components/GridLayout'
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/new" component={NewForm} />
+          <Route exact path="/news" component={News} />
+          <Route exact path="/grid" component={GridLayout} />
           {/* <Route exact path={`/news/:id`} component={PostPage} /> */}
           <Route path="/news/:id" render={(props) => <PostPage {...props} />}/> 
           {/* <Route exact path="/register" component={RegisterPage} /> */}

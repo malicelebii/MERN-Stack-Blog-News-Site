@@ -32,15 +32,16 @@ export default function NewForm() {
   const [description, setdescription] = useState("");
   const [number, setnumber] = useState(0);
   const [category, setcategory] = useState("");
+  const [kapakimgUrl, setkapakimgUrl] = useState("")
 
   const onTitleChange = (e) => {
     const { name, value } = e.target;
     settitle(e.target.value);
   };
 
-  const onDescriptionChange = (e) => {
+  const onImgChange = (e) => {
     const { name, value } = e.target;
-    setdescription(e.target.value);
+    setkapakimgUrl(e.target.value);
   };
 
   const onCategoryChange = (e) => {
@@ -58,7 +59,8 @@ export default function NewForm() {
     const post = {
       title: title,
       description:description,
-      category:category
+      category:category,
+      kapakimgUrl:kapakimgUrl
     };
 
     axios
@@ -83,6 +85,15 @@ export default function NewForm() {
           variant="outlined"
           value={title}
           onChange={(e) => onTitleChange(e)}
+        />
+         <TextField
+          required
+          name="kapakimgUrl"
+          id="outlined-required"
+          label="kapakimgUrl"
+          variant="outlined"
+          value={kapakimgUrl}
+          onChange={(e) => onImgChange(e)}
         />
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>

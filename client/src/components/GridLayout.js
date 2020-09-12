@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React,{useState,useEffect} from 'react';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -7,34 +9,34 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import GridList from "@material-ui/core/GridList";
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
 
 import Typography from "@material-ui/core/Typography";
 import { Link } from "@material-ui/core";
 import axios from "axios";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 245,
-    height: 300,
-    marginRight:40,
-    marginTop:20,
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
+    flexGrow: 1,
   },
-  gridList: {
-    flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
-  media: {
-    height: 120,
-  },
-});
+}));
 
-export default function LatestNews() {
+export default function CenteredGrid() {
   const classes = useStyles();
+  const [spacing, setSpacing] = React.useState(2);
+
+  const handleChange = (event) => {
+    setSpacing(Number(event.target.value));
+  };
+
 
   const [posts, setposts] = useState([]);
 
@@ -75,5 +77,35 @@ export default function LatestNews() {
         ))
       : null;
 
-  return <>{latestNews}</>;
+      function FormRow() {
+        return (
+          <React.Fragment>
+            <Grid item xs={4}>
+              {latestNews}
+            </Grid>
+            <Grid item xs={4}>
+              <Paper className={classes.paper}>item</Paper>
+            </Grid>
+            <Grid item xs={4}>
+              <Paper className={classes.paper}>item</Paper>
+            </Grid>
+          </React.Fragment>
+        );
+      }
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={1}>
+        <Grid container item xs={12} spacing={3}>
+          <FormRow />
+        </Grid>
+        <Grid container item xs={12} spacing={3}>
+          <FormRow />
+        </Grid>
+        <Grid container item xs={12} spacing={3}>
+          <FormRow />
+        </Grid>
+      </Grid>
+    </div>
+  );
 }

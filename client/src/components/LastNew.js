@@ -59,38 +59,33 @@ export default function LastNew(props) {
     </>
   ));
 
-  
-
   const lastPost = posts[posts.length - 1];
 
   return (
     <div className={classes.root}>
       {posts.length > 0 ? (
-        <Link href={`/news/${lastPost._id}`}>
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image="https://img.huffingtonpost.com/asset/5f1cf9c2220000bd0f38797f.jpeg?cache=YeNgrD9xgo&ops=800_450&format=webp"
-                title="Contemplative Reptile"
-              />
-
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+        <Typography className={classes.title} variant="h8" noWrap>
+          <Grid
+            container
+            style={{ marginBottom: "20px", justifyContent: "center" }}
+          >
+            <Grid item md={9} sm={3}>
+              <Link href={`/news/${lastPost._id}`}>
+                <Typography gutterBottom variant="h5" component="h2" style={{margin:"50px"}}>
                   {lastPost.title}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="p"
-                ></Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Link>
+                <Card className={classes.root}>
+                  <CardMedia
+                    className={classes.media}
+                    image={lastPost.kapakImageUrl}
+                    title="Contemplative Reptile"
+                  />
+                </Card>
+              </Link>
+            </Grid>
+          </Grid>
+        </Typography>
       ) : null}
- 
-    
     </div>
   );
 }

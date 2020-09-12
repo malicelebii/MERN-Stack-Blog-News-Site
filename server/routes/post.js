@@ -8,6 +8,7 @@ router.post("/new", (req, res) => {
     title: req.body.title,
     description: req.body.description,
     category:req.body.category,
+    kapakImageUrl:req.body.kapakimgUrl,
     createdAt: Date.now(),
   });
 
